@@ -3,6 +3,10 @@ const cors = require("cors")
 const { connection } = require("./config/db")
 const { userrouter } = require("./routes/user.route")
 const { taskroute } = require("./routes/task.route")
+const { logger } = require("./middlewares/logger")
+const { apiLimiter } = require("./config/rate-limit")
+
+
 
 
 
@@ -12,7 +16,8 @@ const app=express()
 
 
 app.use(cors())
-
+app.use(logger)
+app.use(apiLimiter)
 app.use(express.json())
 
 

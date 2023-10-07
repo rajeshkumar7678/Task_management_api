@@ -55,7 +55,7 @@ const edit_task=async(req,res)=>{
         let { id }=req.params
 
         let updatetask = await taskmodel.findByIdAndUpdate(id,req.body)
-        console.log(updatetask)
+        
         res.status(200).send({message:"task update successfull"})
 
     } catch (error) {
@@ -66,7 +66,16 @@ const edit_task=async(req,res)=>{
 
 const delete_task=async(req,res)=>{
     try {
-        
+        try {
+            let { id }=req.params
+    
+            let deletetask = await taskmodel.findByIdAndDelete(id)
+            
+            res.status(200).send({message:"task deleted successfull"})
+    
+        } catch (error) {
+            res.status(500).send({ error: error.message });
+        }
     } catch (error) {
         res.status(500).send({ error: error.message });
     }

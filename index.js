@@ -2,6 +2,7 @@ const express=require("express")
 const cors = require("cors")
 const { connection } = require("./config/db")
 const { userrouter } = require("./routes/user.route")
+const { taskroute } = require("./routes/task.route")
 
 
 
@@ -16,6 +17,8 @@ app.use(express.json())
 
 
 app.use("/user",userrouter)
+
+app.use("/tasks",taskroute)
 
 
 
